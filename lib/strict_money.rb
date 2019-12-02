@@ -1,6 +1,6 @@
+require "strict_money/amount"
 require "strict_money/version"
 
 module StrictMoney
-  class Error < StandardError; end
-  # Your code goes here...
+  WrongCurrencyError = Class.new(StandardError)
 end
