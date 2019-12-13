@@ -148,4 +148,19 @@ RSpec.describe StrictMoney::Amount do
         raise_error(StrictMoney::WrongCurrencyError)
     end
   end
+
+  describe "when the supported currencies list has been restricted" do
+    before do
+      StrictMoney.supported_currencies = %w(USD GBP)
+    end
+
+    after do
+      StrictMoney.reset_supported_currencies
+    end
+
+    it "does not allow instantiation with an unsupported currency" do
+      expect { described_class.new(100, 'JPY') }.to \
+        raise_error(StrictMoney::UnsupportedCurrencyError)
+    end
+  end
 end
