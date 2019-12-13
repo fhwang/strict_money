@@ -98,7 +98,8 @@ RSpec.describe StrictMoney::Amount do
       described_class.new(amt, 'USD')
     }.shuffle
     sorted = subjects.sort
-    expect(sorted.map { |ma| ma.as_float('USD') }).to eq([1.0,2.0,3.0,4.0,5.0])
+    expect(sorted.map { |ma| ma.as_float('USD') }).to \
+      eq([1.0, 2.0, 3.0, 4.0, 5.0])
     subject = subjects.first
     expect(subject <=> described_class.new(12.3, 'GBP')).to be_nil
     expect(subject <=> "Hi there").to be_nil
@@ -151,11 +152,13 @@ RSpec.describe StrictMoney::Amount do
 
   describe "when the supported currencies list has been restricted" do
     before do
-      StrictMoney.supported_currencies = %w(USD GBP)
+      StrictMoney.configure do |config|
+        config.supported_currencies = %w(USD GBP)
+      end
     end
 
     after do
-      StrictMoney.reset_supported_currencies
+      StrictMoney.reset_configuration
     end
 
     it "does not allow instantiation with an unsupported currency" do

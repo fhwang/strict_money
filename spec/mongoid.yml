@@ -1,0 +1,11 @@
+test:
+  clients:
+    default:
+      database: strict_money_test
+      hosts:
+        - 127.0.0.1:27017
+      options:
+        app_name: strict_money_test
+        read:
+          mode: :primary
+        max_pool_size: 1
