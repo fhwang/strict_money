@@ -11,6 +11,7 @@ module StrictMoney
 
     def initialize(amount, currency)
       raise IncompleteError unless amount && currency
+      raise StrictMoney::UnsupportedCurrencyError unless StrictMoney.supported_currency?(currency)
       @amount = amount
       @currency = currency.upcase
     end
