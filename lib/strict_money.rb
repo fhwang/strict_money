@@ -19,6 +19,10 @@ module StrictMoney
     (@supported_currencies == :all) || @supported_currencies.include?(currency)
   end
 
+  def self.supported_currencies
+    @supported_currencies
+  end
+
   def self.supported_currencies=(sc)
     @supported_currencies = sc
   end
