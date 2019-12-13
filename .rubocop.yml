@@ -26,6 +26,9 @@ Metrics/LineLength:
 Metrics/MethodLength:
   Enabled: false
 
+Naming/BinaryOperatorParameterName:
+  Enabled: false
+
 Style/BlockDelimiters:
   Enabled: false
 
