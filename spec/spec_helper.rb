@@ -1,5 +1,11 @@
 require "bundler/setup"
+require "mongoid"
 require "strict_money"
+require "strict_money/orms/mongoid"
+
+Dir.entries(File.expand_path("../support", __FILE__)).each do |file|
+  require "support/#{file}" if file =~ /\.rb$/
+end
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

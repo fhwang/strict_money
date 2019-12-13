@@ -1,5 +1,8 @@
 require "strict_money/amount"
+require "strict_money/configuration"
 require "strict_money/version"
+require "strict_money/railtie" if defined?(Rails::Railtie)
+require "forwardable"
 
 # Manipulate money and currency with strictness around currencies and time periods.
 module StrictMoney
@@ -9,21 +12,21 @@ module StrictMoney
   # Exception raised when someone uses an invalid currency in a method call.
   WrongCurrencyError = Class.new(StandardError)
 
-  def self.reset_supported_currencies
-    @supported_currencies = :all
-  end
+  class << self
+    extend Forwardable
 
-  reset_supported_currencies
+    def_delegators :configuration, :supported_currency?
 
-  def self.supported_currency?(currency)
-    (@supported_currencies == :all) || @supported_currencies.include?(currency)
-  end
+    attr_reader :configuration
 
-  def self.supported_currencies
-    @supported_currencies
-  end
+    def configure
+      yield(configuration)
+    end
 
-  def self.supported_currencies=(sc)
-    @supported_currencies = sc
+    def reset_configuration
+      @configuration = Configuration.new
+    end
   end
 end
+
+StrictMoney.reset_configuration
