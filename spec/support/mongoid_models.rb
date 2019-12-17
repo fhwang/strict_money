@@ -5,7 +5,7 @@ class MongoidProduct
   field :discount, type: StrictMoney::Amount
 
   validates :price, financiality: { positive: true }
-  validates :discount, financiality: { not_negative: true }
+  validates :discount, financiality: { allow_nil: true, not_negative: true }
 end
 
 Mongoid.load!("./spec/mongoid.yml", :test)

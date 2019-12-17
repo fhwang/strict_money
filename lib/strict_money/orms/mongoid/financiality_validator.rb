@@ -1,7 +1,7 @@
 # Supply validation macros for Mongoid classes that embed StrictMoney::Amount.
 class FinancialityValidator < ActiveModel::EachValidator
   def check_validity!
-    invalid_keys = options.keys - [:positive, :not_negative]
+    invalid_keys = options.keys - [:allow_nil, :positive, :not_negative]
     raise "Invalid keys #{invalid_keys.inspect} for financiality validator" if invalid_keys.present?
   end
 
