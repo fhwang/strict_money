@@ -15,7 +15,7 @@ module StrictMoney
   class << self
     extend Forwardable
 
-    def_delegators :configuration, :supported_currency?
+    def_delegators :configuration, :supported_currency?, :supported_currencies
 
     attr_reader :configuration
 
