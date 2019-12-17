@@ -60,4 +60,10 @@ RSpec.describe StrictMoney::Orms::Mongoid::Amount do
     expect(prime.price.as_float('USD')).to eq(100)
     expect(prime.discount.as_float('USD')).to eq(0.0111)
   end
+
+  it "allows nil values" do
+    product = MongoidProduct.new(price: StrictMoney::Amount.new(100, 'USD'))
+    expect(product).to be_valid
+    product.save!
+  end
 end

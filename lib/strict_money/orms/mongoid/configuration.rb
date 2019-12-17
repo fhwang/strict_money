@@ -8,7 +8,7 @@ module StrictMoney
             @demongoize_block = block
           elsif @demongoize_block
             @demongoize_block.call(object)
-          else
+          elsif object
             StrictMoney::Amount.new(object['amount'], object['currency'])
           end
         end
