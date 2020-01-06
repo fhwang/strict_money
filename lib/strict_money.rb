@@ -1,5 +1,6 @@
 require "strict_money/amount"
 require "strict_money/configuration"
+require "strict_money/historical_amount"
 require "strict_money/version"
 require "strict_money/railtie" if defined?(Rails::Railtie)
 require "forwardable"
